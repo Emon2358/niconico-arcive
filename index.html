@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>指定日のニコニコ動画をWayback Machineで表示</title>
+</head>
+<body>
+    <h1>指定日のニコニコ動画をWayback Machineで表示</h1>
+    <form id="waybackForm" onsubmit="redirectToWayback(); return false;">
+        <input type="text" id="videoUrl" placeholder="ニコニコ動画のURLを入力してください" required>
+        <input type="date" id="date" required>
+        <button type="submit">表示</button>
+    </form>
+
+    <script>
+        function redirectToWayback() {
+            const url = document.getElementById('videoUrl').value;
+            const date = document.getElementById('date').value.replace(/-/g, '');
+            const waybackUrl = `https://web.archive.org/web/${date}/${url}`;
+            window.location.href = waybackUrl;
+        }
+    </script>
+</body>
+</html>
